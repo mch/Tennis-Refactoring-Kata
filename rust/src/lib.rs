@@ -39,21 +39,12 @@ impl TennisGameScoreKeeper {
     }
 
     fn low_score(&self) -> String {
-        let mut temp_score: u8;
-        let mut score = String::new();
-        for i in 1..3 {
-            if i == 1 {
-                temp_score = self.score1;
-            } else {
-                score.push_str("-");
-                temp_score = self.score2;
-            }
-            score.push_str(&Self::score_stringifier(&mut temp_score));
-        }
-        return score;
+        return format!("{}-{}",
+                       &Self::score_stringifier(self.score1),
+                       &Self::score_stringifier(self.score2));
     }
 
-    fn score_stringifier(temp_score: &mut u8) -> String {
+    fn score_stringifier(temp_score: u8) -> String {
         match temp_score {
             0 => return "Love".to_owned(),
             1 => return "Fifteen".to_owned(),
