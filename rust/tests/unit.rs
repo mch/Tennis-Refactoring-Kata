@@ -1,5 +1,5 @@
 mod tests {
-    use rust::{TennisGame, TennisGame1};
+    use rust::{TennisGame, TennisGameScoreKeeper};
 
     fn all_scores() -> Vec<(u8, u8, &'static str)> {
         vec![
@@ -39,25 +39,17 @@ mod tests {
         ]
     }
 
-    fn run(fixture: &mut impl TennisGame) {
+    fn run(game: &mut impl TennisGame) {
         for (p1, p2, expected_result) in all_scores() {
-            fixture.clear();
-            let highest_score = u8::max(p1, p2);
-            for i in 0..highest_score {
-                if i < p1 {
-                    fixture.won_point("player1")
-                }
-                if i < p2 {
-                    fixture.won_point("player2")
-                }
-            }
-            assert_eq!(fixture.get_score(), expected_result, "{},{}", p1, p2);
+            game.clear();
+            game.play(p1, p2);
+            assert_eq!(game.get_score(), expected_result, "{},{}", p1, p2);
         }
     }
 
     #[test]
     fn test_game1() {
-        let mut game = TennisGame1::new();
+        let mut game = TennisGameScoreKeeper::new();
         run(&mut game);
     }
 }
