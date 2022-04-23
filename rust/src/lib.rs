@@ -76,3 +76,15 @@ impl TennisGame for TennisGameScoreKeeper {
         }
     }
 }
+
+pub fn play_tennis_game(fixture: &mut impl TennisGame, p1: u8, p2: u8) {
+    let highest_score = u8::max(p1, p2);
+    for i in 0..highest_score {
+        if i < p1 {
+            fixture.won_point("player1")
+        }
+        if i < p2 {
+            fixture.won_point("player2")
+        }
+    }
+}
