@@ -2,6 +2,7 @@ pub trait TennisGame {
     fn clear(&mut self);
     fn won_point(&mut self, player_name: &str);
     fn get_score(&self) -> String;
+    fn play(&mut self, p1: u8, p2: u8);
 }
 
 #[derive(Default)]
@@ -75,16 +76,17 @@ impl TennisGame for TennisGameScoreKeeper {
             }
         }
     }
-}
 
-pub fn play(fixture: &mut impl TennisGame, p1: u8, p2: u8) {
-    let highest_score = u8::max(p1, p2);
-    for i in 0..highest_score {
-        if i < p1 {
-            fixture.won_point("player1")
-        }
-        if i < p2 {
-            fixture.won_point("player2")
+    fn play(&mut self, p1: u8, p2: u8) {
+        let highest_score = u8::max(p1, p2);
+        for i in 0..highest_score {
+            if i < p1 {
+                self.won_point("player1")
+            }
+            if i < p2 {
+                self.won_point("player2")
+            }
         }
     }
 }
+
