@@ -39,7 +39,7 @@ mod tests {
         ]
     }
 
-    fn run(fixture: &mut TennisGameScoreKeeper) {
+    fn run(fixture: &mut impl TennisGame) {
         for (p1, p2, expected_result) in all_scores() {
             fixture.clear();
             fixture.play(p1, p2);
