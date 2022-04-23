@@ -25,7 +25,7 @@ impl TennisGameScoreKeeper {
         }
     }
 
-    fn player_advantage(&self, score1: u8, score2: u8) -> String {
+    fn player_advantage(score1: u8, score2: u8) -> String {
         let minus_result = score1 as i8 - score2 as i8;
         if minus_result == 1 {
             return "Advantage player1".to_owned();
@@ -52,7 +52,7 @@ impl TennisGame for TennisGameScoreKeeper {
     fn get_score(&self) -> String {
         match (self.score1, self.score2) {
             (a, b) if a == b => Self::same_score(a),
-            (a, b) if a >= 4 || b >= 4 => self.player_advantage(self.score1, self.score2),
+            (a, b) if a >= 4 || b >= 4 => Self::player_advantage(self.score1, self.score2),
             _ => {
                 let mut temp_score: u8;
                 let mut score = String::new();
