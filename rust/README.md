@@ -2,4 +2,11 @@
   - either there's code smell, you could give any string to the won method, maybe ENUM or match exact names so we don't run into invalid names
   - so it doesn't treat player 1 as player 2.
   - open/closed mustache for curly braches
+  - keep the flow of the conversation and even though we don't stick to 5 mins timer. It's nice to get the idea to the logical end point.
+  - intellj is nice and be able to use refactoring
+    - there's couple one we had to do little more manual, certainly better than emacs.
+  - intellij is like power tools that hasn't been utilized
+  - why do we worry about files even? I care about class, traits and how they're related and organized.
+    - should be thinking about packages, classes
+    - in java, sometimes more boiler plate to create different files.
  
