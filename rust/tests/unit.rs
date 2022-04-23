@@ -39,11 +39,11 @@ mod tests {
         ]
     }
 
-    fn run(fixture: &mut impl TennisGame) {
+    fn run(game: &mut impl TennisGame) {
         for (p1, p2, expected_result) in all_scores() {
-            fixture.clear();
-            fixture.play(p1, p2);
-            assert_eq!(fixture.get_score(), expected_result, "{},{}", p1, p2);
+            game.clear();
+            game.play(p1, p2);
+            assert_eq!(game.get_score(), expected_result, "{},{}", p1, p2);
         }
     }
 
