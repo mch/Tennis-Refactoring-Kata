@@ -5,18 +5,18 @@ pub trait TennisGame {
 }
 
 #[derive(Default)]
-pub struct TennisGame1 {
+pub struct TennisGameScoreKeeper {
     score1: u8,
     score2: u8,
     _player1_name: String,
     _player2_name: String,
 }
-impl TennisGame1 {
+impl TennisGameScoreKeeper {
     pub fn new() -> Self {
-        TennisGame1::default()
+        TennisGameScoreKeeper::default()
     }
 }
-impl TennisGame for TennisGame1 {
+impl TennisGame for TennisGameScoreKeeper {
     fn clear(&mut self) {
         self.score1 = 0;
         self.score2 = 0;
