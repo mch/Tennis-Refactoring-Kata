@@ -40,8 +40,8 @@ impl TennisGameScoreKeeper {
 
     fn low_score(&self) -> String {
         return format!("{}-{}",
-                       &Self::score_stringifier(self.score1),
-                       &Self::score_stringifier(self.score2));
+                       Self::score_stringifier(self.score1),
+                       Self::score_stringifier(self.score2));
     }
 
     fn score_stringifier(temp_score: u8) -> String {
