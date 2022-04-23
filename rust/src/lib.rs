@@ -48,15 +48,19 @@ impl TennisGameScoreKeeper {
                 score.push_str("-");
                 temp_score = self.score2;
             }
-            match temp_score {
-                0 => score.push_str("Love"),
-                1 => score.push_str("Fifteen"),
-                2 => score.push_str("Thirty"),
-                3 => score.push_str("Forty"),
-                _ => {}
-            }
+            score.push_str(&Self::score_stringifier(&mut temp_score));
         }
         return score;
+    }
+
+    fn score_stringifier(temp_score: &mut u8) -> String {
+        match temp_score {
+            0 => return "Love".to_owned(),
+            1 => return "Fifteen".to_owned(),
+            2 => return "Thirty".to_owned(),
+            3 => return "Forty".to_owned(),
+            _ => return "".to_owned(),
+        }
     }
 }
 impl TennisGame for TennisGameScoreKeeper {
