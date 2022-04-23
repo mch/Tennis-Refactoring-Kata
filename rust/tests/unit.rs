@@ -42,7 +42,7 @@ mod tests {
     fn run(fixture: &mut TennisGameScoreKeeper) {
         for (p1, p2, expected_result) in all_scores() {
             fixture.clear();
-            rust::play_tennis_game(fixture, p1, p2);
+            rust::play(fixture, p1, p2);
             assert_eq!(fixture.get_score(), expected_result, "{},{}", p1, p2);
         }
     }
