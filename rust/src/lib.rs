@@ -37,6 +37,27 @@ impl TennisGameScoreKeeper {
         }
         "Win for player2".to_owned()
     }
+
+    fn low_score(&self) -> String {
+        let mut temp_score: u8;
+        let mut score = String::new();
+        for i in 1..3 {
+            if i == 1 {
+                temp_score = self.score1;
+            } else {
+                score.push_str("-");
+                temp_score = self.score2;
+            }
+            match temp_score {
+                0 => score.push_str("Love"),
+                1 => score.push_str("Fifteen"),
+                2 => score.push_str("Thirty"),
+                3 => score.push_str("Forty"),
+                _ => {}
+            }
+        }
+        return score;
+    }
 }
 impl TennisGame for TennisGameScoreKeeper {
     fn clear(&mut self) {
@@ -54,26 +75,7 @@ impl TennisGame for TennisGameScoreKeeper {
         match (self.score1, self.score2) {
             (a, b) if a == b => Self::same_score(a),
             (a, b) if a >= 4 || b >= 4 => Self::player_advantage(self.score1, self.score2),
-            _ => {
-                let mut temp_score: u8;
-                let mut score = String::new();
-                for i in 1..3 {
-                    if i == 1 {
-                        temp_score = self.score1;
-                    } else {
-                        score.push_str("-");
-                        temp_score = self.score2;
-                    }
-                    match temp_score {
-                        0 => score.push_str("Love"),
-                        1 => score.push_str("Fifteen"),
-                        2 => score.push_str("Thirty"),
-                        3 => score.push_str("Forty"),
-                        _ => {}
-                    }
-                }
-                return score;
-            }
+            _ => self.low_score(),
         }
     }
 
