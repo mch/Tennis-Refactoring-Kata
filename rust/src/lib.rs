@@ -15,6 +15,15 @@ impl TennisGameScoreKeeper {
     pub fn new() -> Self {
         TennisGameScoreKeeper::default()
     }
+
+    fn same_score(score: u8) -> String {
+        match score {
+            0 => return "Love-All".to_owned(),
+            1 => return "Fifteen-All".to_owned(),
+            2 => return "Thirty-All".to_owned(),
+            _ => return "Deuce".to_owned(),
+        }
+    }
 }
 impl TennisGame for TennisGameScoreKeeper {
     fn clear(&mut self) {
@@ -30,12 +39,7 @@ impl TennisGame for TennisGameScoreKeeper {
     }
     fn get_score(&self) -> String {
         match (self.score1, self.score2) {
-            (a, b) if a == b => match a {
-                0 => return "Love-All".to_owned(),
-                1 => return "Fifteen-All".to_owned(),
-                2 => return "Thirty-All".to_owned(),
-                _ => return "Deuce".to_owned(),
-            },
+            (a, b) if a == b => Self::same_score(a),
             (a, b) if a >= 4 || b >= 4 => {
                 let minus_result = self.score1 as i8 - self.score2 as i8;
                 if minus_result == 1 {
